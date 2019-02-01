@@ -1,0 +1,245 @@
+
+
+
+#include "DHT.h"
+
+#define DHTPIN1 D12 
+#define DHTPIN2 D11
+#define DHTPIN3 D10
+#define DHTPIN4 D9
+#define DHTPIN5 D7
+#define DHTPIN6 D6
+#define DHTPIN7 D5
+
+
+DHT dht1(DHTPIN1, DHT11);
+DHT dht2(DHTPIN2, DHT11);
+DHT dht3(DHTPIN3, DHT11);
+DHT dht4(DHTPIN4, DHT11);
+DHT dht5(DHTPIN5, DHT11);
+DHT dht6(DHTPIN6, DHT11);
+DHT dht7(DHTPIN7, DHT11);
+
+float h=0, t=0;
+
+void setup() {
+
+Serial.begin(9600);
+
+dht1.begin();
+dht2.begin();
+dht3.begin();
+dht4.begin();
+dht5.begin();
+dht6.begin();
+dht7.begin();
+}
+
+void loop() {
+
+h=0; t=0;
+Serial.println("1");
+
+delay(1000);
+
+//Считываем влажность
+
+ h = dht1.readHumidity();
+
+// Считываем температуру
+
+ t = dht1.readTemperature();
+
+
+if (isnan(h) || isnan(t)) {
+
+Serial.println("Не удается считать показания");
+
+
+}
+
+Serial.print("Влажность: "+h+" %\t"+"Температура: "+t+" *C ");
+
+
+
+
+h=0; t=0;
+
+
+
+Serial.println("2");
+
+delay(1000);
+
+//Считываем влажность
+
+ h = dht2.readHumidity();
+
+// Считываем температуру
+
+ t = dht2.readTemperature();
+
+
+if (isnan(h) || isnan(t)) 
+{
+
+Serial.println("Не удается считать показания");
+
+
+}
+
+Serial.print("Влажность: "+h+" %\t"+"Температура: "+t+" *C ");
+
+
+
+h=0; t=0;
+
+
+
+
+Serial.println("3");
+
+delay(1000);
+
+//Считываем влажность
+
+ h = dht3.readHumidity();
+
+// Считываем температуру
+
+ t = dht3.readTemperature();
+
+
+if (isnan(h) || isnan(t)) 
+{
+
+Serial.println("Не удается считать показания");
+
+
+}
+
+Serial.print("Влажность: "+h+" %\t"+"Температура: "+t+" *C ");
+
+h=0; t=0;
+
+
+
+
+
+
+Serial.println("4");
+
+delay(1000);
+
+//Считываем влажность
+
+ h = dht4.readHumidity();
+
+// Считываем температуру
+
+ t = dht4.readTemperature();
+
+
+if (isnan(h) || isnan(t)) 
+{
+
+Serial.println("Не удается считать показания");
+
+
+}
+
+Serial.print("Влажность: "+h+" %\t"+"Температура: "+t+" *C ");
+
+
+
+
+h=0; t=0;
+
+
+
+Serial.println("5");
+
+delay(1000);
+
+//Считываем влажность
+
+ h = dht5.readHumidity();
+
+// Считываем температуру
+
+ t = dht5.readTemperature();
+
+
+if (isnan(h) || isnan(t)) 
+{
+
+Serial.println("Не удается считать показания");
+
+
+}
+
+Serial.print("Влажность: "+h+" %\t"+"Температура: "+t+" *C ");
+
+h=0; t=0;
+
+
+
+
+
+
+Serial.println("6");
+
+delay(1000);
+
+//Считываем влажность
+
+ h = dht6.readHumidity();
+
+// Считываем температуру
+
+ t = dht6.readTemperature();
+
+
+if (isnan(h) || isnan(t)) 
+{
+
+Serial.println("Не удается считать показания");
+
+
+}
+
+Serial.print("Влажность: "+h+" %\t"+"Температура: "+t+" *C ");
+
+
+
+
+h=0; t=0;
+
+
+
+Serial.println("7");
+
+delay(1000);
+
+//Считываем влажность
+
+ h = dht7.readHumidity();
+
+// Считываем температуру
+
+ t = dht7.readTemperature();
+
+
+if (isnan(h) || isnan(t)) 
+{
+
+Serial.println("Не удается считать показания");
+
+
+}
+
+Serial.print("Влажность: "+h+" %\t"+"Температура: "+t+" *C ");
+
+h=0; t=0;
+
+}
