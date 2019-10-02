@@ -1,0 +1,296 @@
+int data3[332]; 
+int i=0,clk=3,d2=4,j; 
+int az=HIGH; 
+int val=0; 
+
+int raw[10]; 
+int tt[10]; 
+int buf[32];
+
+
+void func(int x2)
+{
+int i,d = 1, k=0, exp2=0; 
+int t[30]; 
+double x, drob, n, y, z; 
+x=x2; 
+int cel = (int)x; 
+while(cel) 
+{ 
+t[k] = cel%2; 
+k++; 
+cel /= 2; 
+} 
+drob = modf(x, &n); 
+int a[23]; 
+for(i = 0; i < 23; i++) 
+{ 
+drob *= 2; 
+y = modf(drob, &z); 
+a[i] = (int)z; 
+if(drob >= 1) 
+drob = drob - 1; 
+} 
+/* 
+for(i=0; i<k; i++) 
+Serial.print(t[i]); 
+*/ 
+//---------------------— 
+exp2=k-1+127; 
+cel = (int)exp2; 
+int t2[10], k3=0; 
+d=1; 
+while(cel) 
+{ 
+t2[k3]= cel%2; 
+k3++; 
+cel /= 2; 
+} 
+int g=0; 
+if(x>=0) 
+{
+  buf[g]=0;
+  g++;
+}
+else 
+{
+  buf[g]=1; 
+  g++;
+}
+for(i=7; i>=0; i--) { buf[g]=t2[i]; g++; } 
+for(i=k-2; i>=0; i--) { buf[g]=t[i]; g++; } 
+for(i = 0; i < 24-k; i++) { buf[g]=a[i]; g++; } 
+}
+
+void setup() 
+{ 
+Serial.begin(9600); 
+pinMode(clk,OUTPUT); 
+pinMode(d2,OUTPUT); 
+pinMode( A0, INPUT ); 
+} 
+
+void loop() 
+{ 
+if(Serial.available()) 
+{ 
+val=Serial.read(); 
+if(val=='1') 
+{ 
+raw[0] = analogRead(A0); 
+tt[0] = (( raw[0]/1023.0 )*5.0*1000/10)+1; 
+
+raw[1] = raw[0]; 
+tt[1] = ( raw[1]/1023.0 )*5.0*1000/10; 
+
+raw[2] = raw[0]; 
+tt[2] = ( raw[2]/1023.0 )*5.0*1000/10; 
+
+raw[3] = raw[0]; 
+tt[3] = ( raw[3]/1023.0 )*5.0*1000/10; 
+
+raw[4] = raw[0]; 
+tt[4] = ( raw[4]/1023.0 )*5.0*1000/10; 
+
+raw[5] = raw[0]; 
+tt[5] = ( raw[5]/1023.0 )*5.0*1000/10; 
+
+raw[6] = raw[0]; 
+tt[6] = ( raw[6]/1023.0 )*5.0*1000/10; 
+
+raw[7] = raw[0]; 
+tt[7] = ( raw[7]/1023.0 )*5.0*1000/10; 
+
+raw[8] = raw[0]; 
+tt[8] = ( raw[8]/1023.0 )*5.0*1000/10; 
+
+raw[9] = raw[0]; 
+tt[9] = (( raw[9]/1023.0 )*5.0*1000/10)+1; 
+
+Serial.println(); 
+Serial.println(); 
+Serial.print("t1 = "); 
+Serial.println(tt[0]); 
+
+Serial.print("t2 = "); 
+Serial.println(tt[1]); 
+
+Serial.print("t3 = "); 
+Serial.println(tt[2]); 
+
+Serial.print("t4 = "); 
+Serial.println(tt[3]); 
+
+Serial.print("t5 = "); 
+Serial.println(tt[4]); 
+
+Serial.print("t6 = "); 
+Serial.println(tt[5]); 
+
+Serial.print("t7 = "); 
+Serial.println(tt[6]); 
+
+Serial.print("t8 = "); 
+Serial.println(tt[7]); 
+
+Serial.print("t9 = "); 
+Serial.println(tt[8]); 
+
+Serial.print("t10 ="); 
+Serial.println(tt[9]); 
+Serial.println("\n-------------------------------"); 
+
+Serial.print("\n Function : \n");
+int tr=9;
+func(tt[0]);
+Serial.print("\n 1. ");
+for(i=0; i<32 ; i++)
+{
+  data3[tr]=buf[i];
+  Serial.print(buf[i]);
+  tr++;
+}
+
+
+func(tt[1]);
+Serial.print("\n 2. ");
+for(i=0; i<32 ; i++)
+{
+  data3[tr]=buf[i];
+  Serial.print(buf[i]);
+  tr++;
+}
+
+
+func(tt[2]);
+Serial.print("\n 3. ");
+for(i=0; i<32 ; i++)
+{
+  data3[tr]=buf[i];
+  Serial.print(buf[i]);
+  tr++;
+}
+
+
+func(tt[3]);
+Serial.print("\n 4. ");
+for(i=0; i<32 ; i++)
+{
+  data3[tr]=buf[i];
+  Serial.print(buf[i]);
+  tr++;
+}
+
+
+func(tt[4]);
+Serial.print("\n 5. ");
+for(i=0; i<32 ; i++)
+{
+  data3[tr]=buf[i];
+  Serial.print(buf[i]);
+  tr++;
+}
+
+func(tt[5]);
+Serial.print("\n 6. ");
+for(i=0; i<32 ; i++)
+{
+  data3[tr]=buf[i];
+  Serial.print(buf[i]);
+  tr++;
+}
+
+func(tt[6]);
+Serial.print("\n 7. ");
+for(i=0; i<32 ; i++)
+{
+  data3[tr]=buf[i];
+  Serial.print(buf[i]);
+  tr++;
+}
+
+func(tt[7]);
+Serial.print("\n 8. ");
+for(i=0; i<32 ; i++)
+{
+  data3[tr]=buf[i];
+  Serial.print(buf[i]);
+  tr++;
+}
+
+func(tt[8]);
+Serial.print("\n 9. ");
+for(i=0; i<32 ; i++)
+{
+  data3[tr]=buf[i];
+  Serial.print(buf[i]);
+  tr++;
+}
+
+func(tt[9]);
+Serial.print("\n 10.");
+for(i=0; i<32 ; i++)
+{
+  data3[tr]=buf[i];
+  Serial.print(buf[i]);
+  tr++;
+}
+
+//-----------------------------------------------------------------------------------
+
+
+
+data3[0]=1; 
+data3[1]=0; 
+data3[2]=1; 
+data3[3]=1; 
+data3[4]=0; 
+data3[5]=0; 
+data3[6]=1; 
+data3[7]=1; 
+//start 
+//first trash 
+data3[8]=1; 
+//start data[0] 
+int gg=9; 
+Serial.print("\n\n Dannie : \n\n"); 
+
+for(i=0; i<10; i++)
+{
+  Serial.print(" Data-3 gg : "); 
+  for(j=0; j<32; j++) 
+  { 
+  Serial.print(data3[gg] ); 
+  gg++; 
+} Serial.println();} 
+
+data3[329]=0; 
+data3[330]=1; 
+data3[331]=1; 
+i=0; 
+Serial.print("\n Otpravka : \n "); 
+while(i!=332) 
+{ 
+az = !az; 
+digitalWrite(clk,az); 
+/*Serial.print("clk="); 
+Serial.println(az);*/ 
+if(az==LOW) 
+{ 
+digitalWrite(d2,data3[i]); 
+if(i==0 || i==9 || i==(9+32) || i==(9+32+32) || i==(9+32+32+32) || i==(9+32*4) || i==(9+32*5) || i==(9+32*6) || i==(9+32*7) || i==(9+32*8) || i==(9+32*9) || i==(9+32*10)) 
+{ 
+Serial.print("\n data-3 = "); 
+} 
+Serial.print(data3[i]); 
+i++; 
+} 
+delay(2); 
+} 
+i=0; 
+val=0; 
+Serial.println("\n\n Otpravka zaverzhena."); 
+} 
+else Serial.println("STOP"); 
+} 
+}
