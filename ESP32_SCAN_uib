@@ -29,7 +29,7 @@ class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {
   String s1(advertisedDevice.toString().c_str());
   
   String s3(advertisedDevice.getRSSI());
-  String s2 = "{ \"value\": \"DeviceID: 8, RSSI: " + s3 + ", " + s1 + "\"}";
+  String s2 = "{ \"value\": \"Device: 8, RSSI: " + s3 + ", " + s1 + "\"}";
   
   //Serial.println("\n RSSI\n");
   //Serial.println(s3);  
