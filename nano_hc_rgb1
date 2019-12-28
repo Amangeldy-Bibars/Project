@@ -32,24 +32,9 @@ float gas_reference = 250000;
 float hum_reference = 40;
 int   getgasreference_count = 0;
 
-void setColor(int red, int green, int blue)
-{
-  #ifdef COMMON_ANODE 
-  red = 255 - red;
-  green = 255 - green;
-  blue = 255 - blue;
-  #endif
-  analogWrite(redPin, red);
-  analogWrite(greenPin, green);
-  analogWrite(bluePin, blue);
-}
-
 void setup() {
   Serial.begin(115200);
   while (!Serial);
-  pinMode(redPin, OUTPUT);
-  pinMode(greenPin, OUTPUT);
-  pinMode(bluePin, OUTPUT);
   
   if (!bme.begin()) {
     while (1);
