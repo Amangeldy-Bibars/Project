@@ -16,7 +16,7 @@ const char* server = "api.thingspeak.com";
 const int postingInterval = 3 * 1000; 
 
 void setup() {
-  
+  Serial.begin(9600);
   dht.begin();   
   WiFi.begin(ssid, password);
 
@@ -26,9 +26,13 @@ void setup() {
 }
 
 void loop() {  
+Serial.println("Loop 1");
   if (client.connect(server, 80)) {
     float h = dht.readHumidity();
     float t = dht.readTemperature();
+    
+    Serial.println("T:");
+    Serial.println(t);
     
     String body = "&field1=";
            body += String(t);
@@ -44,6 +48,8 @@ void loop() {
     client.println("Content-Length: " + String(body.length()));
     client.println("");
     client.print(body);
+    
+    Serial.println("POST OK");
   }
   client.stop();
 
