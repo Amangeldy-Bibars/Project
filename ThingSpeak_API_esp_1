@@ -1,0 +1,52 @@
+#include <ESP8266WiFi.h>
+#include "DHT.h"
+#define DHTPIN D10    
+#define DHTTYPE DHT11  
+
+const char* ssid = "TP LINK 16"; 
+const char* password = "Azhar1234"; 
+
+DHT dht(DHTPIN, DHTTYPE);
+
+WiFiClient client;
+
+const int channelID = 1026575;
+String writeAPIKey = "73VSX6K5KS2GJQW4"; 
+const char* server = "api.thingspeak.com";
+const int postingInterval = 3 * 1000; 
+
+void setup() {
+  
+  dht.begin();   
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+  }
+}
+
+void loop() {  
+  if (client.connect(server, 80)) {
+    float h = dht.readHumidity();
+    float t = dht.readTemperature();
+    
+    String body = "&field1=";
+           body += String(t);
+           body += "&field2=";
+           body += String(h);
+           
+    client.println("POST /update HTTP/1.1");
+    client.println("Host: api.thingspeak.com");
+    client.println("User-Agent: ESP8266 (nothans)/1.0");
+    client.println("Connection: close");
+    client.println("X-THINGSPEAKAPIKEY: " + writeAPIKey);
+    client.println("Content-Type: application/x-www-form-urlencoded");
+    client.println("Content-Length: " + String(body.length()));
+    client.println("");
+    client.print(body);
+  }
+  client.stop();
+
+  delay(postingInterval);
+
+}
