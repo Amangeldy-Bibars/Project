@@ -1,0 +1,21 @@
+import bluetooth
+from bluetooth.ble import DiscoveryService
+
+
+service = DiscoveryService()
+ble_devices = service.discover(13)
+mobile_devices = bluetooth.discover_devices(lookup_names=True)
+#print('BLE:' + str(devices))
+#print('Mobile:' + str(nearby_devices))
+
+devices = {}
+
+for mac_addr, name in ble_devices.items():
+    devices.update({mac_addr: name})
+
+for mac_addr, name in mobile_devices:
+    devices.update({mac_addr: name})
+
+print("Found {} devices.".format(len(devices)))
+print(devices)
+
