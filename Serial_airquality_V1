@@ -1,0 +1,11 @@
+import serial
+
+s = serial.Serial('COM4')
+
+values = bytearray([0xFF, 0x01, 0x86, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79])
+
+s.write(values)
+        
+res = s.read(26)
+
+print(res)
