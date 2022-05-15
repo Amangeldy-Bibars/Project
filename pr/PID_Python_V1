@@ -1,0 +1,29 @@
+#BB_PID_V1
+#!/usr/bin/env python
+#coding=utf8
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams['font.family'] = 'fantasy'
+mpl.rcParams['font.fantasy'] = 'Comic Sans MS, Arial'
+from numpy import e,arange
+def hp(t,Kp,Ki,Kd,Td):
+         if t<0:
+                  z=0
+         elif Td==0:
+                  z=Kp+Ki*t
+         else:
+                   z=Kp+Ki*t+Kp*Kd*e**(-t/Td)                  
+         return z
+x=arange(-2,20,0.01)
+
+y=[hp(t,2,0,0,0) for t in x]
+y1=[hp(t,2,0.25,0,0) for t in x]
+y2=[hp(t,2,0.25,2,2) for t in x]
+
+plt.title('Переходные характеристики регуляторов')
+plt.plot(x, y, linewidth=2, label='П регулятор')
+plt.plot(x, y1, linewidth=2, label='ПИ регулятор')
+plt.plot(x, y2, linewidth=2, label='ПИД регулятор ')
+plt.legend(loc='best')
+plt.grid(True)
+plt.show()
