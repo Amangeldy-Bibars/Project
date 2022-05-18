@@ -7,8 +7,8 @@
 
 #include <stdlib.h>
 
-#define RXD2 14
-#define TXD2 27
+#define RXD2 14 //T (TX) pin of AQI device to D14 PIN of ESP32
+#define TXD2 27 //R (RX) pin of AQI device to D27 PIN of ESP32
 
 #define RXD3 33
 #define TXD3 25
