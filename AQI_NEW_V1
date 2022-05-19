@@ -129,7 +129,7 @@ void setup() {
  
 void loop()
 {
-delay(3000);
+delay(1000);
 //---1---
 //datchikten oku boligi
 for(int i=0; i<10; i++)
@@ -196,8 +196,8 @@ for(int i=0; i<10; i++)
 
 //---1---
 
-  //jiberu();
-  //jiberu1();
+  jiberu();
+  jiberu1();
 
 //---2---
 //server boligi
