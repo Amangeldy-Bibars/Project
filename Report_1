@@ -1,0 +1,30 @@
+interface
+procedure ACM3_VariableInit_gr_Report(engUnits: string);
+procedure ACM3_VariableInit_mg_Report(engUnits: string);
+
+implementation
+//Формирует динамические переменные для г/с
+procedure ACM3_VariableInit_gr_Report(engUnits: string);
+begin
+  ReportStrNameACM.Value := '№3 на БМЗ';
+  ReportStrEngUnits.Value := engUnits;
+  ReportIdNO.Value := BMZ_ACM3_NO_Value_1.ID;
+  ReportIdNO2.Value := BMZ_ACM3_NO2_Value_1.ID;
+  ReportIdCO.Value := BMZ_ACM3_CO_Value_1.ID;
+  ReportIdSO2.Value := BMZ_ACM3_SO2_Value_1.ID;
+  ReportIdPM.Value := BMZ_ACM3_PM_Value_1.ID;
+end;
+
+//Формирует динамические переменные для мг/м³
+procedure ACM3_VariableInit_mg_Report(engUnits: string);
+begin
+  ReportStrNameACM.Value := '№3 на БМЗ';
+  ReportStrEngUnits.Value := engUnits;
+  ReportIdNO.Value := BMZ_ACM3_NO_Pv_1.ID;
+  ReportIdNO2.Value := BMZ_ACM3_NO2_Pv_1.ID;
+  ReportIdCO.Value := BMZ_ACM3_CO_Pv_1.ID;
+  ReportIdSO2.Value := BMZ_ACM3_SO2_Pv_1.ID;
+  ReportIdPM.Value := BMZ_ACM3_PM_Pv_1.ID;
+end;
+
+end.
