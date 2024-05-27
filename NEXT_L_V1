@@ -1,0 +1,200 @@
+interface
+procedure ValuesNEXT1();
+
+implementation
+//Функция NEXT
+//Режим 1 - по формуле
+//Режим 2 - OPC UA
+procedure ValuesNEXT1();
+begin
+
+  if next_sim_1.Value = 1 then
+    begin
+
+        
+        //page scheme
+        BMZ_ACM3_CO_Value_1.Value := Random*1+1;
+        BMZ_ACM3_CO2_Value_1.Value := Random*100+400;
+
+        BMZ_ACM3_CO_Pv_1.Value := Random*5+5;
+        BMZ_ACM3_CO2_Pv_1.Value := Random*1+1;
+
+        BMZ_ACM3_NO_Pv_1.Value := Random*5+5;
+        BMZ_ACM3_NO_Value_1.Value := Random*1+1;
+
+        BMZ_ACM3_NO2_Pv_1.Value := Random*5+5;
+        BMZ_ACM3_NO2_Value_1.Value := Random*1+1;
+
+        BMZ_ACM3_SO2_Pv_1.Value := Random*50+100;
+        BMZ_ACM3_SO2_Value_1.Value := Random*10+20;
+
+        BMZ_ACM3_H2O_Pv_1.Value := Random*1;
+
+        BMZ_ACM3_O2_Pv_1.Value := Random*1+21;
+
+        BMZ_ACM3_F_Pv_1.Value := Random*5+7;
+        BMZ_ACM3_FT_Speed_1.Value := Random*5+5;
+
+        BMZ_ACM3_PM_Pv_1.Value := Random*5+7;
+        BMZ_ACM3_PM_Value_1.Value := Random*5+10;
+
+        BMZ_ACM3_T_Pv_1.Value := Random*10+20;
+        BMZ_ACM3_T2_Pv_1.Value := Random*5+20;
+
+        BMZ_ACM3_P_Pv_1.Value := Random*5+40;
+        BMZ_ACM3_P2_Pv_1.Value := Random*5+40
+
+        //page AI
+        //BMZ_ACM3_CO_Min_1.Value := Random*10;
+        //BMZ_ACM3_CO_Max_1.Value := Random*10;
+        //BMZ_ACM3_CO_mA_1.Value := Random*16+4;
+        //BMZ_ACM3_CO_Valid_1.Value := Random(2);
+        //BMZ_ACM3_CO_Disc_1.Value := Random(2);
+        //BMZ_ACM3_CO_Overflow_1.Value := Random(2);
+        //BMZ_ACM3_CO_LL_1.Value := Random(2);
+        //BMZ_ACM3_CO_L_1.Value := Random(2);
+        //BMZ_ACM3_CO_H_1.Value := Random(2);
+        //BMZ_ACM3_CO_HH_1.Value := Random(2);
+        //BMZ_ACM3_CO_EnLL_1.Value := Random(2);
+        //BMZ_ACM3_CO_EnL_1.Value := Random(2);
+        //BMZ_ACM3_CO_EnH_1.Value := Random(2);
+        //BMZ_ACM3_CO_EnHH_1.Value := Random(2);
+        //BMZ_ACM3_CO_Repair_1.Value := Random(2);
+        //BMZ_ACM3_CO_LimitLL_1.Value := Random*10;
+        //BMZ_ACM3_CO_LimitL_1.Value := Random*10;
+        //BMZ_ACM3_CO_LimitH_1.Value := Random*10;
+        //BMZ_ACM3_CO_LimitHH_1.Value := Random*10;
+        //BMZ_ACM3_CO_Hyst_1.Value := Random*10;
+
+
+    end
+  else if next_sim_1.Value = 0 then
+    begin
+
+        //page scheme
+
+        //page scheme with direct value assignments
+        BMZ_ACM3_CO_Value_1.Value := BMZ_ACM3_CO_Value.Value;
+        BMZ_ACM3_CO2_Value_1.Value := BMZ_ACM3_CO2_Value.Value;
+
+        BMZ_ACM3_CO_Pv_1.Value := BMZ_ACM3_CO_Pv.Value;
+        BMZ_ACM3_CO2_Pv_1.Value := BMZ_ACM3_CO2_Pv.Value;
+
+        BMZ_ACM3_NO_Pv_1.Value := BMZ_ACM3_NO_Pv.Value;
+        BMZ_ACM3_NO_Value_1.Value := BMZ_ACM3_NO_Value.Value;
+
+        BMZ_ACM3_NO2_Pv_1.Value := BMZ_ACM3_NO2_Pv.Value;
+        BMZ_ACM3_NO2_Value_1.Value := BMZ_ACM3_NO2_Value.Value;
+        
+        BMZ_ACM3_SO2_Pv_1.Value := BMZ_ACM3_SO2_Pv.Value;
+        BMZ_ACM3_SO2_Value_1.Value := BMZ_ACM3_SO2_Value.Value;
+        
+        BMZ_ACM3_H2O_Pv_1.Value := BMZ_ACM3_H2O_Pv.Value;
+        
+        BMZ_ACM3_O2_Pv_1.Value := BMZ_ACM3_O2_Pv.Value;
+        
+        BMZ_ACM3_F_Pv_1.Value := BMZ_ACM3_F_Pv.Value;
+        BMZ_ACM3_FT_Speed_1.Value := BMZ_ACM3_FT_Speed.Value;
+        
+        BMZ_ACM3_PM_Pv_1.Value := BMZ_ACM3_PM_Pv.Value;
+        BMZ_ACM3_PM_Value_1.Value := BMZ_ACM3_PM_Value.Value;
+        
+        BMZ_ACM3_T_Pv_1.Value := BMZ_ACM3_T_Pv.Value;
+        BMZ_ACM3_T2_Pv_1.Value := BMZ_ACM3_T2_Pv.Value;
+        
+        BMZ_ACM3_P_Pv_1.Value := BMZ_ACM3_P_Pv.Value;
+        BMZ_ACM3_P2_Pv_1.Value := BMZ_ACM3_P2_Pv.Value;
+        
+
+        //page AI
+        BMZ_ACM3_CO_Min_1.Value := BMZ_ACM3_CO_Min.Value;
+        BMZ_ACM3_CO_Max_1.Value := BMZ_ACM3_CO_Max.Value;
+        BMZ_ACM3_CO_mA_1.Value := BMZ_ACM3_CO_mA.Value;
+        BMZ_ACM3_CO_Valid_1.Value := BMZ_ACM3_CO_Valid.Value;
+        BMZ_ACM3_CO_Disc_1.Value := BMZ_ACM3_CO_Disc.Value;
+        BMZ_ACM3_CO_Overflow_1.Value := BMZ_ACM3_CO_Overflow.Value;
+        BMZ_ACM3_CO_LL_1.Value := BMZ_ACM3_CO_LL.Value;
+        BMZ_ACM3_CO_L_1.Value := BMZ_ACM3_CO_L.Value;
+        BMZ_ACM3_CO_H_1.Value := BMZ_ACM3_CO_H.Value;
+        BMZ_ACM3_CO_HH_1.Value := BMZ_ACM3_CO_HH.Value;
+        BMZ_ACM3_CO_EnLL_1.Value := BMZ_ACM3_CO_EnLL.Value;
+        BMZ_ACM3_CO_EnL_1.Value := BMZ_ACM3_CO_EnL.Value;
+        BMZ_ACM3_CO_EnH_1.Value := BMZ_ACM3_CO_EnH.Value;
+        BMZ_ACM3_CO_EnHH_1.Value := BMZ_ACM3_CO_EnHH.Value;
+        BMZ_ACM3_CO_Repair_1.Value := BMZ_ACM3_CO_Repair.Value;
+        BMZ_ACM3_CO_LimitLL_1.Value := BMZ_ACM3_CO_LimitLL.Value;
+        BMZ_ACM3_CO_LimitL_1.Value := BMZ_ACM3_CO_LimitL.Value;
+        BMZ_ACM3_CO_LimitH_1.Value := BMZ_ACM3_CO_LimitH.Value;
+        BMZ_ACM3_CO_LimitHH_1.Value := BMZ_ACM3_CO_LimitHH.Value;
+        BMZ_ACM3_CO_Hyst_1.Value := BMZ_ACM3_CO_Hyst.Value;
+
+
+        //page report
+
+        BMZ_ACM3_CO_Total_1.Value := BMZ_ACM3_CO_Total.Value;
+        BMZ_ACM3_CO2_Total_1.Value := BMZ_ACM3_CO2_Total.Value;
+        BMZ_ACM3_NO_Total_1.Value := BMZ_ACM3_NO_Total.Value;
+        BMZ_ACM3_NO2_Total_1.Value := BMZ_ACM3_NO2_Total.Value;
+        BMZ_ACM3_SO2_Total_1.Value := BMZ_ACM3_SO2_Total.Value;
+        BMZ_ACM3_PM_Total_1.Value := BMZ_ACM3_PM_Total.Value;
+
+
+        BMZ_ACM3_CO_NormTotal_1.Value := BMZ_ACM3_CO_NormTotal.Value;
+        BMZ_ACM3_CO2_NormTotal_1.Value := BMZ_ACM3_CO2_NormTotal.Value;
+        BMZ_ACM3_NO_NormTotal_1.Value := BMZ_ACM3_NO_NormTotal.Value;
+        BMZ_ACM3_NO2_NormTotal_1.Value := BMZ_ACM3_NO2_NormTotal.Value;
+        BMZ_ACM3_SO2_NormTotal_1.Value := BMZ_ACM3_SO2_NormTotal.Value;
+        BMZ_ACM3_PM_NormTotal_1.Value := BMZ_ACM3_PM_NormTotal.Value;
+
+
+
+        //page DI
+        BMZ_ACM3_A4_DI_A_Ch8.Value := BMZ_ACM3_A4_DI_A_Ch0.Value;
+        BMZ_ACM3_A4_DI_A_Ch9.Value := BMZ_ACM3_A4_DI_A_Ch1.Value;
+        BMZ_ACM3_A4_DI_A_Ch10.Value := BMZ_ACM3_A4_DI_A_Ch2.Value;
+        BMZ_ACM3_A4_DI_A_Ch11.Value := BMZ_ACM3_A4_DI_A_Ch3.Value;
+        BMZ_ACM3_A4_DI_A_Ch12.Value := BMZ_ACM3_A4_DI_A_Ch4.Value;
+        BMZ_ACM3_A4_DI_A_Ch13.Value := BMZ_ACM3_A4_DI_A_Ch5.Value;
+        BMZ_ACM3_A4_DI_A_Ch14.Value := BMZ_ACM3_A4_DI_A_Ch6.Value;
+        BMZ_ACM3_A4_DI_A_Ch15.Value := BMZ_ACM3_A4_DI_A_Ch7.Value;
+
+        BMZ_ACM3_A4_DI_B_Ch8.Value := BMZ_ACM3_A4_DI_B_Ch0.Value;
+        BMZ_ACM3_A4_DI_B_Ch9.Value := BMZ_ACM3_A4_DI_B_Ch1.Value;
+        BMZ_ACM3_A4_DI_B_Ch10.Value := BMZ_ACM3_A4_DI_B_Ch2.Value;
+        BMZ_ACM3_A4_DI_B_Ch11.Value := BMZ_ACM3_A4_DI_B_Ch3.Value;
+        BMZ_ACM3_A4_DI_B_Ch12.Value := BMZ_ACM3_A4_DI_B_Ch4.Value;
+        BMZ_ACM3_A4_DI_B_Ch13.Value := BMZ_ACM3_A4_DI_B_Ch5.Value;
+        BMZ_ACM3_A4_DI_B_Ch14.Value := BMZ_ACM3_A4_DI_B_Ch6.Value;
+        BMZ_ACM3_A4_DI_B_Ch15.Value := BMZ_ACM3_A4_DI_B_Ch7.Value;
+
+        BMZ_ACM3_A4_DI_C_Ch8.Value := BMZ_ACM3_A4_DI_C_Ch0.Value;
+        BMZ_ACM3_A4_DI_C_Ch9.Value := BMZ_ACM3_A4_DI_C_Ch1.Value;
+        BMZ_ACM3_A4_DI_C_Ch10.Value := BMZ_ACM3_A4_DI_C_Ch2.Value;
+        BMZ_ACM3_A4_DI_C_Ch11.Value := BMZ_ACM3_A4_DI_C_Ch3.Value;
+        BMZ_ACM3_A4_DI_C_Ch12.Value := BMZ_ACM3_A4_DI_C_Ch4.Value;
+        BMZ_ACM3_A4_DI_C_Ch13.Value := BMZ_ACM3_A4_DI_C_Ch5.Value;
+        BMZ_ACM3_A4_DI_C_Ch14.Value := BMZ_ACM3_A4_DI_C_Ch6.Value;
+        BMZ_ACM3_A4_DI_C_Ch15.Value := BMZ_ACM3_A4_DI_C_Ch7.Value;
+
+        BMZ_ACM3_A5_DO_A_Ch0.Value := BMZ_ACM3_A5_DO_A_Ch8.Value;
+        BMZ_ACM3_A5_DO_A_Ch1.Value := BMZ_ACM3_A5_DO_A_Ch9.Value;
+        BMZ_ACM3_A5_DO_A_Ch3.Value := BMZ_ACM3_A5_DO_A_Ch10.Value;
+        BMZ_ACM3_A5_DO_A_Ch4.Value := BMZ_ACM3_A5_DO_A_Ch11.Value;
+        BMZ_ACM3_A5_DO_A_Ch5.Value := BMZ_ACM3_A5_DO_A_Ch12.Value;
+        BMZ_ACM3_A5_DO_A_Ch6.Value := BMZ_ACM3_A5_DO_A_Ch13.Value;
+        BMZ_ACM3_A5_DO_A_Ch7.Value := BMZ_ACM3_A5_DO_A_Ch14.Value;
+        BMZ_ACM3_A5_DO_A_Ch8.Value := BMZ_ACM3_A5_DO_A_Ch15.Value;
+
+
+        //page A
+        //BMZ_ACM3_FT_CSA_1.Value := 9;
+        //BMZ_ACM3_Purge_TStartHeating_1.Value := 5;
+        //BMZ_ACM3_Purge_TStopHeating_1.Value := 25;
+
+
+    end;
+
+
+end;
+
+end.
