@@ -1,0 +1,22 @@
+begin
+        //page report
+        BMZ_ACM3_CO_Total_1.Value := 15.4;
+        BMZ_ACM3_CO2_Total_1.Value := 4500.7;
+        BMZ_ACM3_NO_Total_1.Value := 3.1;
+        BMZ_ACM3_NO2_Total_1.Value := 4.2;
+        BMZ_ACM3_SO2_Total_1.Value := 670.4;
+        BMZ_ACM3_PM_Total_1.Value := 2.5;
+
+
+        BMZ_ACM3_CO_NormTotal_1.Value := 57.6;
+        BMZ_ACM3_CO2_NormTotal_1.Value := 15400;
+        BMZ_ACM3_NO_NormTotal_1.Value := 14.3;
+        BMZ_ACM3_NO2_NormTotal_1.Value := 16.5;
+        BMZ_ACM3_SO2_NormTotal_1.Value := 6030;
+        BMZ_ACM3_PM_NormTotal_1.Value := 9.1;
+
+
+
+
+
+end.
