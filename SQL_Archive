@@ -1,0 +1,89 @@
+{---------- ВАЖНО! ----------
+Запрос AVG данных из БД выполняется со смещением aOffset
+во времени относительно aInterval.
+Это связано с тем, что мгновенные данные поступают от Scada в БД
+с задержкой от 30 до 60 сек
+}
+var
+  aQuery, aNow: string;
+  aStart, aEnd: TDateTime;
+  aInterval, aOffset: Integer;
+
+begin
+  aInterval := 20;//мин. Интервал для формирования даты. Например, 20 = 0 минут, 20 минут, 40 минут
+  aOffset := 3;//мин. Смещение aInterval для запуска скрипта
+
+  //SQLGenerateRandomLocalValues();
+  if (SecondOf(Now) mod 5) = 0 then
+  begin
+    ValuesNEXT1();  //mode 1 & 2
+  end;
+
+  //Выполняем скрипт только в указанные минуты со смещением и 0 секунду
+  //if (SecondOf(Now) mod 10) = 0 then //ДЛЯ ТЕСТОВ
+  if (((MinuteOf(Now) div aInterval) * aInterval + aOffset) = MinuteOf(Now)) AND (SecondOf(Now) = 0) then
+  begin
+    //Обнуляем локальные переменные
+    SQLResettingLocalVariables(SQL_SOURCE_ACM3);
+
+    //Формируем дату
+    aEnd := RecodeDateTime(Now, YearOf(Now), MonthOf(Now), DayOf(Now), HourOf(Now), (MinuteOf(Now) div aInterval) * aInterval, 0, 0);
+    aStart := IncMinute(aEnd, -aInterval);
+
+    //Получаем усредненные взвешенные во времени значения (не арифметические средние)
+    ArchiveGroupBegin(SQL_SOURCE_ACM3); //Открываем группу для агрегирования данных из БД
+    AddMessage(Now, mkMessage, 'Агрегирование архивной группы: ' + IntToStr(SQL_SOURCE_ACM3) + '. Начало: ' + DateTimeToStr(aStart) + '. Конец: ' + DateTimeToStr(aEnd), False, False);
+
+    {
+    ArchiveAverage(LOC_TEST_Value1,       Loc_ACM3_GasFlowTemperature, aStart, aEnd, 0);  //ДЛЯ ТЕСТОВ
+    ArchiveAverage(LOC_TEST_Value2,       Loc_ACM3_Overpressure, aStart, aEnd, 0);   //ДЛЯ ТЕСТОВ
+    ArchiveAverage(LOC_TEST_Value3,       Loc_ACM3_GasFlowRate, aStart, aEnd, 0);    //ДЛЯ ТЕСТОВ
+    ArchiveAverage(LOC_TEST_Value4,       Loc_ACM3_Wetness, aStart, aEnd, 0);    //ДЛЯ ТЕСТОВ
+    ArchiveAverage(LOC_TEST_Value5,       Loc_ACM3_GasAirVolume, aStart, aEnd, 0);    //ДЛЯ ТЕСТОВ
+    }     
+
+
+    ArchiveAverage(BMZ_ACM3_T_Pv_1,           Loc_ACM3_GasFlowTemperature, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_P_Pv_1,           Loc_ACM3_Overpressure, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_FT_Speed_1,       Loc_ACM3_GasFlowRate, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_H2O_Pv_1,         Loc_ACM3_Wetness, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_F_Pv_1,           Loc_ACM3_GasAirVolume, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_O2_Pv_1,          Loc_ACM3_OxygenConcentration, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_NO_Value_1,       Loc_ACM3_NOEmissions, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_NO2_Value_1,      Loc_ACM3_NO2Emissions, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_CO_Value_1,       Loc_ACM3_COEmissions, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_CO2_Value_1,      Loc_ACM3_CO2Emissions, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_SO2_Value_1,      Loc_ACM3_SO2Emissions, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_PM_Value_1,       Loc_ACM3_PMEmissions, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_NO_Pv_1,          Loc_ACM3_NOConcentration, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_NO2_Pv_1,         Loc_ACM3_NO2Concentration, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_CO_Pv_1,          Loc_ACM3_COConcentration, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_CO2_Pv_1,         Loc_ACM3_CO2Concentration, aStart, aEnd, 0); 
+    ArchiveAverage(BMZ_ACM3_SO2_Pv_1,         Loc_ACM3_SO2Concentration, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_PM_Pv_1,          Loc_ACM3_PMConcentration, aStart, aEnd, 0);
+
+
+    {
+    //ArchiveAverage(BMZ_ACM3_T_Pv,           Loc_ACM3_GasFlowTemperature, aStart, aEnd, 0);
+    //ArchiveAverage(BMZ_ACM3_P_Pv,           Loc_ACM3_Overpressure, aStart, aEnd, 0);
+    //ArchiveAverage(BMZ_ACM3_FT_Speed,       Loc_ACM3_GasFlowRate, aStart, aEnd, 0);
+    //ArchiveAverage(BMZ_ACM3_H2O_Pv,         Loc_ACM3_Wetness, aStart, aEnd, 0);
+    //ArchiveAverage(BMZ_ACM3_F_Pv,           Loc_ACM3_GasAirVolume, aStart, aEnd, 0);
+    //ArchiveAverage(BMZ_ACM3_O2_Pv,          Loc_ACM3_OxygenConcentration, aStart, aEnd, 0);
+    //ArchiveAverage(BMZ_ACM3_NO_Value,       Loc_ACM3_NOEmissions, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_NO2_Value,      Loc_ACM3_NO2Emissions, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_CO_Value,       Loc_ACM3_COEmissions, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_CO2_Value,      Loc_ACM3_CO2Emissions, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_SO2_Value,      Loc_ACM3_SO2Emissions, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_PM_Value,       Loc_ACM3_PMEmissions, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_NO_Pv,          Loc_ACM3_NOConcentration, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_NO2_Pv,         Loc_ACM3_NO2Concentration, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_CO_Pv,          Loc_ACM3_COConcentration, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_CO2_Pv,         Loc_ACM3_CO2Concentration, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_SO2_Pv,         Loc_ACM3_SO2Concentration, aStart, aEnd, 0);
+    ArchiveAverage(BMZ_ACM3_PM_Pv,          Loc_ACM3_PMConcentration, aStart, aEnd, 0);
+    }
+
+    ArchiveGroupEnd; //Закрываем группу
+  end;
+end.
